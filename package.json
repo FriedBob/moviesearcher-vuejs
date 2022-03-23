@@ -2,7 +2,7 @@
   "name": "webpack-basic",
   "version": "1.0.0",
   "description": "",
-  "__browserslist": "이 프로젝트가 지원하는 대상 브라우저를 지정 for Autoprefixer!",
+  "__browserslist": "지원하는 대상 브라우저를 지정 (Autoprefixer)",
   "browserslist": [
     "> 1%",
     "last 2 versions"
@@ -41,6 +41,7 @@
     "webpack-dev-server": "^4.0.0-beta.0"
   },
   "dependencies": {
-    "vue": "^3.0.7"
+    "vue": "^3.0.7",
+    "vue-router": "^4.0.14"
   }
 }
