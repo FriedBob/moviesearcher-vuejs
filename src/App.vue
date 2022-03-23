@@ -1,28 +1,3 @@
 <template>
-  <!-- Remove & use example component! -->
-  <HelloWorld 
-    :msg="message" 
-    @click="handler" />
-  <HelloWorld msg="Good" />
+  <RouterView />    <!-- 전역적으로 사용할 수 있는 RouterView라는 컴포넌트 -->
 </template>
-
-<script>
-import HelloWorld from '~/components/HelloWorld'
-
-export default {
-  components: {
-    HelloWorld
-  },
-  data() {
-    return {
-      message: 'Hello Vue!'
-    }
-  },
-  methods: {
-    handler() {
-      console.log(this.message)
-      this.message += '!'
-    }
-  }
-}
-</script>
