@@ -5,6 +5,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'         // npm i
 // routes를 통해 path 에 연결할 Component들을 같은 폴더 내 .vue파일에서 import함
 import Home from './Home'
 import About from './About'
+import Movie from './Movie'
 
 export default createRouter({                    // createRouter의 결과를 export
 
@@ -22,6 +23,10 @@ export default createRouter({                    // createRouter의 결과를 ex
         {
             path: '/about',
             component: About               // https://google.com/about   -> about page로 이동하겠다. 여기에 연결된 vuejs component가 실행됨
+        },
+        {
+            path: '/movie',
+            component: Movie
         }
     ]
 })

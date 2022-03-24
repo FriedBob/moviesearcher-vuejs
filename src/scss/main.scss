@@ -1,12 +1,17 @@
-$color--black: #000;
-$color--white: #fff;
+/* ----------- Bootstrap variables override ------------*/
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
 
-body {
-  background-color: $color--black;
-  h1 {
-    color: $color--white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
+// Default variable overrides
+$primary: #54dab1;          // primary 속성을 가진 모든 스타일이 해당 색상으로 override ex)class="btn-primary"
+
+
+// Required
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+
+/* ----------- Bootstrap variables override END------------*/
+
+@import "../../node_modules/bootstrap/scss/bootstrap";  // bootstrap import, bootstrap의 javascript는 사용하지 않음
+
