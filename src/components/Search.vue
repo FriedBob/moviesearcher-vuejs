@@ -4,7 +4,8 @@
       class="form-control"
       type="text" 
       v-model="title"
-      placeholder="Search for Movies, Series and more" />
+      placeholder="Search for Movies, Series and more" 
+      @keyup.enter="apply" />
     <div class="selects">
       <select
         v-for="filter in filters"
@@ -23,11 +24,18 @@
         </option>
       </select>
     </div>
+    <button
+      class="btn btn-primary"
+      @click="apply">
+      Apply
+    </button>
   </div>
 </template>
 
 
 <script>
+import axios from 'axios'
+
 export default {
   data(){
     return{
@@ -57,6 +65,14 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    async apply(){
+      // Serach movie method
+      const OMDB_API_KEY = 'b0d38b1f';
+      const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`)
+      console.log(res)
+    }
   }
 }
 </script>
@@ -80,6 +96,12 @@ export default {
         margin-right: 0;
       }
     }
+  }
+  .btn {
+    width: 120px;
+    height: 50px;
+    font-weight: 700;
+    flex-shrink: 0;
   }
 }
 </style>
