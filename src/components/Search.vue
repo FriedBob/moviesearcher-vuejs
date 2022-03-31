@@ -34,7 +34,7 @@
 
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   data(){
@@ -67,11 +67,21 @@ export default {
     }
   },
   methods: {
+    // async apply(){
+    //   // Serach movie method
+    //   const OMDB_API_KEY = 'b0d38b1f';
+    //   const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`)
+    //   console.log(res)
+    // }
+
+    // Vuex store의 mutation은 .commit()으로 actions는 .dispatch() 을 이용한다
     async apply(){
-      // Serach movie method
-      const OMDB_API_KEY = 'b0d38b1f';
-      const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`)
-      console.log(res)
+      this.$store.dispatch('movie/searchMovies', {    // store 폴더의 index.js 의 modules에 작성된 movie 컴포넌트에 들어가서 searchMovies 메서드를 실행한다는 뜻, 2번째 인자는 payload
+        title: this.title,
+        type: this.type,
+        number:this.number,
+        year:this.year
+      })  
     }
   }
 }
