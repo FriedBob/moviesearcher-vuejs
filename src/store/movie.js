@@ -1,6 +1,7 @@
 // 영화검색에 관련된 정보를 취급
 
 import axios from 'axios'
+import _uniqBy from 'lodash/uniqBy'
 
 export default{
 
@@ -34,7 +35,7 @@ export default{
 				const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=1`)
 				const { Search, totalResults } = res.data 			// res.data 객체 내부의 두 속성을 구조분해할당
 				commit('updateState',{
-					movies: Search
+					movies: _uniqBy(Search, 'imdbID')				// id중복 해결 (lodash)
 				})
 				const total = parseInt(totalResults, 10)
 				const pageLength = Math.ceil(total / 10)
@@ -46,7 +47,7 @@ export default{
 						const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`)
 						const { Search } = res.data
 						commit('updateState',{
-							movies: [...state.movies, ...Search]		// 두 개의 배열의 내용을 새로운 배열에 전개연산자로 통합할당 
+							movies: [...state.movies, ..._uniqBy(Search, 'imdbID')]		// 두 개의 배열의 내용을 새로운 배열에 전개연산자로 통합할당 
 						})
 					}
 				}
