@@ -5,6 +5,14 @@
 // Default variable overrides
 $primary: #54dab1;          // primary 속성을 가진 모든 스타일이 해당 색상으로 override ex)class="btn-primary"
 
+$container-max-widths: (
+  sm: 540px,
+  md: 704px,
+  lg: 924px,
+  xl: 1140px,
+  xxl: 1364px
+);
+
 
 // Required
 @import "../../node_modules/bootstrap/scss/variables";
