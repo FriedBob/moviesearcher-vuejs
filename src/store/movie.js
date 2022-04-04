@@ -8,7 +8,7 @@ export default{
 	namespaced: true,													// namespaced : movie.js가 store에서 모듈화되서 사용할 수 있는지를 설정
 	state: () => ({														// state : 취급해야하는 data 개념, 여기서는 state(상태)라고 부름
 		movies: [],
-		message: '',
+		message: 'Please Search the movie title.',
 		loading: false
 	}),							
 	getters: {															// getters : state라는 계산된 (computed) 상태를 만들어내는 개념
@@ -30,6 +30,13 @@ export default{
 	actions: {															// actions : methods 함수들과 유사, 비동기로 동작함
 		async searchMovies({ state, commit }, payload){			// state를 바로 인자로 넣진 못함 -> context {state,getters,mutations,actions 내포} 활용  -> commit을 구조할당하면 context 명시안해도됨
 				// Serach movie method							// payload는 사용자가 인자로 넣은것을 저장함
+				if (state.loading){		// 아직 처리중(loading)이면 명령을 실행하지않음
+					return 
+				}
+				commit('updateState', {
+					message: '',
+					loading: true
+				})
 				try{
 					
 				const res = await _fetchMovie({...payload, page:1})
@@ -57,7 +64,12 @@ export default{
 					movies: [],
 					message: message
 				})
-			}	
+
+			} finally {
+				commit('updateState',{
+					loading: false
+				})
+			}
 		}
 	}
 }							 
