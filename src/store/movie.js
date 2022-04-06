@@ -9,7 +9,8 @@ export default{
 	state: () => ({														// state : 취급해야하는 data 개념, 여기서는 state(상태)라고 부름
 		movies: [],
 		message: 'Please Search the movie title.',
-		loading: false
+		loading: false,
+		theMovie: {}
 	}),							
 	getters: {															// getters : state라는 계산된 (computed) 상태를 만들어내는 개념
 		movieIds(state){
@@ -70,14 +71,38 @@ export default{
 					loading: false
 				})
 			}
+		},
+		async searchMovieWithId({state,commit}, payload){
+			if(state.loading) return
+
+			commit('updateState',{
+				theMovie: {},
+				loading: true
+			})
+			try{
+				const res = await _fetchMovie(payload)
+				commit('updateState',{
+					theMovie:res.data
+				})
+			} catch(error){
+				commit('updateState', {
+					theMovie:{}
+				})
+			} finally {
+				commit('updateState',{
+					loading: false
+				})
+			}
 		}
 	}
 }							 
 
 function _fetchMovie(payload){					// 언더바(_)를 붙임으로써 현재 파일에서만 사용할 함수임을 명시
-	const { title, type, year, page } = payload
+	const { title, type, year, page, id } = payload
 	const OMDB_API_KEY = '7035c60c';
-	const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
+	const url = id 
+	? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
+	: `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
 	
 
 	return new Promise((resolve, reject)=>{

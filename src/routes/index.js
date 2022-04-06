@@ -25,7 +25,7 @@ export default createRouter({                    // createRouter의 결과를 ex
             component: About               // https://google.com/about   -> about page로 이동하겠다. 여기에 연결된 vuejs component가 실행됨
         },
         {
-            path: '/movie',
+            path: '/movie/:id',            // :id 동적으로 페이지를 넣어줄수 있다
             component: Movie
         }
     ]
