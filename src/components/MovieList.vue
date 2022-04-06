@@ -39,7 +39,7 @@ export default {
       return this.$store.state.movie.message
     },
     loading(){
-      return this.$stroe.state.movie.loading
+      return this.$store.state.movie.loading
     }
   }
 }
