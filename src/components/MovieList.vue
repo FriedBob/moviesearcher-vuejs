@@ -3,9 +3,8 @@
     <div
       :class="{ 'no-result': !movies.length }"
       class="inner">
-      <div
-        v-if="loading"
-        class="spinner-border text-primary"></div>
+      <Loader 
+        v-if="loading" />
       <div
         v-if="message"
         class="message">
@@ -25,10 +24,12 @@
 
 <script>
 import MovieItem from '~/components/MovieItem'
+import Loader from '~/components/Loader'
 
 export default {
   components:{
-    MovieItem
+    MovieItem,
+    Loader
   },
   computed: {       // 반응성이 유지되어야 하기 때문에 computed에 movie의 movies배열을 정의
                     // -> 반응성유지(computed함수는 지정한 데이터가 변경될때마다 자동실행) + vuex $store에 저장된 데이터를 쓰겠다고 명시하는것

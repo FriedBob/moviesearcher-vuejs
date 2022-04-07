@@ -11,11 +11,19 @@
         <div class="skeleton etc"></div>
       </div>
     </div>
+    <Loader 
+      :size="3"
+      :z-index="9"
+      :fixed="true" />       <!-- props를 html에서 사용할경우 dash case 사용해야함 -->
   </div>
 </template>
 
 <script>
+import Loader from '~/components/Loader'
 export default {
+  components: {
+    Loader
+  },
   created(){
     console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId',{
