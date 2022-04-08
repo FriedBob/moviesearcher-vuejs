@@ -2,6 +2,10 @@
   <div
     class="movie"
     :style="{ backgroundImage: `url(${movie.Poster})` }">
+    <Loader 
+      v-if="imageLoading" 
+      :size="1.5"
+      absolute />
     <div class="info">
       <div class="year">
         {{ movie.Year }}
@@ -14,11 +18,33 @@
 </template>
 
 <script>
+import Loader from '~/components/Loader'
+
 export default {
+  components:{
+    Loader
+  },
   props:{
     movie: {
       type: Object,
       default: () => ({})   // Object타입은 default가 함수여야함
+    }
+  },
+  data(){
+    return {
+      imageLoading : true
+    }
+  },
+  mounted(){
+    this.init()
+  },
+  methods: {
+    init(){
+      const img = document.createElement('img')
+      img.src = this.movie.Poster
+      img.addEventListener('load', ()=> {
+        this.imageLoading = false
+      })
     }
   }
 }
