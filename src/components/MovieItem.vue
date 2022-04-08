@@ -39,12 +39,9 @@ export default {
     this.init()
   },
   methods: {
-    init(){
-      const img = document.createElement('img')
-      img.src = this.movie.Poster
-      img.addEventListener('load', ()=> {
-        this.imageLoading = false
-      })
+    async init(){         // 비동기함수 기반이므로 차례대로 수행시킬수 있게 처리가 필요
+      await this.$loadImage(this.movie.Poster)
+      this.imageLoading = false
     }
   }
 }
