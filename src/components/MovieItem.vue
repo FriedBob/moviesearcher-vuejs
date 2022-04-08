@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async init(){         // 비동기함수 기반이므로 차례대로 수행시킬수 있게 처리가 필요
-      await this.$loadImage(this.movie.Poster)
+      await this.$loadImage(this.movie.Poster)  // load에 쓰이는 movie.Poster는 공유하는가
       this.imageLoading = false
     }
   }
