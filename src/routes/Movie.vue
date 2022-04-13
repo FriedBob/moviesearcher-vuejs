@@ -77,6 +77,7 @@
 </template>
 
 <script>
+// import { mapActions } from 'vuex' // Action을 등록하는 helper (기존의 dispatch 대응)
 import Loader from '~/components/Loader'
 export default {
   components: {
@@ -97,11 +98,20 @@ export default {
   },
   created(){
     // console.log(this.$route)
+    
+    // mapActions()로 다른방식으로도 등록이 가능
     this.$store.dispatch('movie/searchMovieWithId',{
       id: this.$route.params.id
     })
+    // this.searchMovieWithId() -> mapActions에 등록했다면 일반 method처럼 불러올수도있다
   },
   methods: {
+    // mapActions로 dispatch를 method에 등록
+    // mapActions('가져올컴포넌트', [가져올 actions])     ... 로 함수리턴 객체의 내용물을 methods에 등록
+    // ...mapActions('movie',[
+    //   'searchMovieWithId'
+    // ]),
+
     requestDiffSizeImage(url, size= 700){
       if(!url || url === 'N/A'){
         this.imageLoading = false
@@ -120,7 +130,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
+// @import "~/scss/main";
 
 .container {
   padding-top: 40px;

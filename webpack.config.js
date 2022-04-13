@@ -46,7 +46,12 @@ module.exports = {
           'style-loader',
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          {
+            loader: "sass-loader",
+            options: {
+              additionalData: '@import "~/scss/main";',    // vue파일에 매번 scss를 import하는것을 자체적으로 미리 넣어주게 함
+            }
+          }
         ]
       },
       {

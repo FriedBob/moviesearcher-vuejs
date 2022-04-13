@@ -42,12 +42,12 @@ export default {
     loading(){
       return this.$store.state.movie.loading
     }
-  }
+  } // About.vue 파일처럼 ...mapState() 함수로 할당시킬 수도 있다.
 }
 </script>
 
 <style lang="scss">
-@import "~/scss/main";
+// @import "~/scss/main";
 
 .container{
   margin-top: 30px;

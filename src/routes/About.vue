@@ -19,6 +19,7 @@
 
 <script>
 import Loader from '~/components/Loader';
+import {mapState} from 'vuex';
 
 export default {
   component:{
@@ -30,21 +31,34 @@ export default {
     }
   },
   computed:{
-    image(){
-      return this.$store.state.about.image
-    },
-    name(){
-      return this.$store.state.about.name
-    },
-    email(){
-      return this.$store.state.about.email
-    },
-    phone(){
-      return this.$store.state.about.phone
-    },
-    blog(){
-      return this.$store.state.about.blog
-    }
+    // mapState('사용할모듈',[배열(상태의 나열)])
+    ...mapState('about',[
+      'image',
+      'name',
+      'email',
+      'blog',
+      'phone'
+    ])// 함수의 결과가 객체내부에서 등록될수있도록 전개연산자 ... 을 활용
+      // 반환된 mapState()함수의 return 객체가 전개연산자 ...에 의해 전개되서 computed에 등록
+
+    // ---- 위의 내용은 아래의 내용과 완전히 같다 vuex helper 활용 ----
+
+    // image(){
+    //   return this.$store.state.about.image
+    // },
+    // name(){
+    //   return this.$store.state.about.name
+    // },
+    // email(){
+    //   return this.$store.state.about.email
+    // },
+    // phone(){
+    //   return this.$store.state.about.phone
+    // },
+    // blog(){
+    //   return this.$store.state.about.blog
+    // }
+
   },
   mounted() {                           // life cycle에는 비동기 async 키워드를 붙일수 없다
     this.init()
@@ -59,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
+// @import "~/scss/main";
 
 .about{
   text-align: center;
