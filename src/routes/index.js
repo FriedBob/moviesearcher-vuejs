@@ -6,6 +6,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'         // npm i
 import Home from './Home'
 import About from './About'
 import Movie from './Movie'
+import NotFound from './NotFound'
 
 export default createRouter({                    // createRouter의 결과를 export
 
@@ -27,6 +28,10 @@ export default createRouter({                    // createRouter의 결과를 ex
         {
             path: '/movie/:id',            // :id 동적으로 페이지를 넣어줄수 있다
             component: Movie
+        },
+        {
+            path: '/:pathMatch(.*)',         // "pathMatch"부분은 무슨이름이어도 상관없다 이후의 () 안의 정규표현식이 중요    .* -> 1글자 매칭을 최대한 많이 = 전부 -> 위의 페이지들이 아닌 나머지 내용 중 매칭되는 전부
+            component: NotFound
         }
     ]
 })
