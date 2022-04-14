@@ -14,6 +14,10 @@ export default createRouter({                    // createRouter의 결과를 ex
     // Hash 모드 : https://google.com/#/search 등의 모양으로 페이지에 접근하는 방법
     // Hash 모드를 사용하면 새로고침 시 페이지를 찾을 수 없는 에러가 발생하지않음
     history: createWebHashHistory(),
+
+    scrollBehavior(){
+        return { top:0 }    // Router로 페이지 이동시 Scrollbar가 항상 꼭대기로 리셋
+    },
     
     // page들을 구분해주는 개념
     routes: [
