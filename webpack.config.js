@@ -6,7 +6,7 @@ const _require = id => require(require.resolve(id, { paths: [require.main.path] 
 // path: NodeJS에서 파일 및 디렉토리 경로 작업을 위한 전역 모듈
 const path = _require('path')
 const HtmlPlugin = _require('html-webpack-plugin')
-const CopyPlugin = _require('copy-webpack-plugin')
+// const CopyPlugin = _require('copy-webpack-plugin')
 const { VueLoaderPlugin } = _require('vue-loader')
 
 module.exports = {
@@ -73,11 +73,11 @@ module.exports = {
     new HtmlPlugin({
       template: './index.html'
     }),
-    new CopyPlugin({
-      patterns: [
-        { from: 'static' }
-      ]
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     { from: 'static' }
+    //   ]
+    // }),
     new VueLoaderPlugin()
   ],
 
