@@ -16,7 +16,7 @@ export default createRouter({                    // createRouter의 결과를 ex
     history: createWebHashHistory(),
 
     scrollBehavior(){
-        return { top:0 }    // Router로 페이지 이동시 Scrollbar가 항상 꼭대기로 리셋
+        return { top: 0 }    // Router로 페이지 이동시 Scrollbar가 항상 꼭대기로 리셋
     },
     
     // page들을 구분해주는 개념
