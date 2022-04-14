@@ -64,10 +64,10 @@ export default{
 						})
 					}
 				} 
-			} catch(message) {
+			} catch(error) {					// try, catch 과정에서 생긴 error의 경우 네트워크 자원을 사용하지 않았다면 message, 사용했다면 error 객체의 형태가 된다
 				commit('updateState', {
 					movies: [],
-					message: message
+					message: error.message
 				})
 
 			} finally {
@@ -101,25 +101,33 @@ export default{
 	}
 }							 
 
-function _fetchMovie(payload){					// 언더바(_)를 붙임으로써 현재 파일에서만 사용할 함수임을 명시
-	const { title, type, year, page, id } = payload
-	const OMDB_API_KEY = '7035c60c';
-	const url = id 
-	? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
-	: `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
+// 주석처리된 부분은 functions/movie.js에 serverless 함수로 작성됨
+async function _fetchMovie(payload){					// 언더바(_)를 붙임으로써 현재 파일에서만 사용할 함수임을 명시
+	// const { title, type, year, page, id } = payload
+	// const OMDB_API_KEY = '7035c60c';
+	// const url = id 
+	// ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
+	// : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
 	
 
-	return new Promise((resolve, reject)=>{
-		axios.get(url)
-			.then(res=>{
-				if(res.data.Error){
-					reject(res.data.Error)
-				}
-				resolve(res)
-			})
-			.catch(err =>{
-				reject(err.message)
-			})
-	})
+	// return new Promise((resolve, reject)=>{
+	// 	axios.get(url)
+	// 		.then(res=>{
+	// 			if(res.data.Error){
+	// 				reject(res.data.Error)
+	// 			}
+	// 			resolve(res)
+	// 		})
+	// 		.catch(err =>{
+	// 			reject(err.message)
+	// 		})
+	// })
+
+	// axios.post('serverless function이 작성된 파일 경로', 인수)
+	// serverless함수의 주소로 데이터를 요청 , payload는 사용자 인수로 넣을 객체데이터
+	/* get과 post의 차이 */
+		// post는 두번째 인수에 인자를 넣고 그것이 event 내의 body라는 속성에 string type으로 전송이 됨
+		// get은 필요한 정보들을 쿼리스트링에 직접 명시해서 보냄
+	return await axios.post('/.netlify/functions/movie', payload)
 
 }
