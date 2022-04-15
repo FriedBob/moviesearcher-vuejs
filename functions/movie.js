@@ -1,4 +1,6 @@
-const axios = require('axios')  // nodejs환경에서 동작하는 module은 import,export가 아닌 require, exports 을 사용해야한다
+const axios = require('axios')  				// nodejs환경에서 동작하는 module은 import,export가 아닌 require, exports 을 사용해야한다
+// const OMDB_API_KEY = process.env.OMDB_API_KEY	// .env 에 등록해놓은 환경변수
+const { OMDB_API_KEY } = process.env				// 위를 구조분해한것
 
 // serverless function 은 무조건 async(비동기)로만 정의할수 있다
 // statusCode 와 body를 가지는 객체로 return 해서 내보내야 한다
@@ -7,8 +9,8 @@ exports.handler = async function(event) {
 	console.log(event)	// 체크용
 	
 	const payload = JSON.parse(event.body)
-  const { title, type, year, page, id } = payload
-	const OMDB_API_KEY = '7035c60c';
+	const { title, type, year, page, id } = payload
+	// const OMDB_API_KEY = 'xxxxxxxx';	// API key를 serverless함수로 숨겼지만 여전히 키가 남아있다 -> 환경변수로 숨겨야함
 	const url = id 
 	? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
 	: `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`

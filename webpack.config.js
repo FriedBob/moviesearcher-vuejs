@@ -9,6 +9,9 @@ const HtmlPlugin = _require('html-webpack-plugin')
 // const CopyPlugin = _require('copy-webpack-plugin')
 const { VueLoaderPlugin } = _require('vue-loader')
 
+// npm i -D dotenv-webpack : 코드에 노출된 api키를 환경변수로 숨기기 위한 플러그인
+const Dotenv = require('dotenv-webpack')
+
 module.exports = {
   resolve: {
     // 경로에서 확장자 생략 설정
@@ -78,7 +81,8 @@ module.exports = {
     //     { from: 'static' }
     //   ]
     // }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new Dotenv()
   ],
 
   // 개발 서버 옵션

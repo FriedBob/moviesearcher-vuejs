@@ -104,7 +104,7 @@ export default{
 // 주석처리된 부분은 functions/movie.js에 serverless 함수로 작성됨
 async function _fetchMovie(payload){					// 언더바(_)를 붙임으로써 현재 파일에서만 사용할 함수임을 명시
 	// const { title, type, year, page, id } = payload
-	// const OMDB_API_KEY = '7035c60c';
+	// const OMDB_API_KEY = 'xxxxxxxx';
 	// const url = id 
 	// ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` 
 	// : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
