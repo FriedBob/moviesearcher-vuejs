@@ -49,7 +49,7 @@
               :title="name"
               class="rating">
               <img
-                :src="`/src/assets/${name}.png`"
+                :src="`https://raw.githubusercontent.com/FriedBob/moviesearcher-vuejs/master/src/assets/${name}.png`"
                 :alt="`${name}`" />
               <span>{{ score }}</span>
             </div>
@@ -79,6 +79,8 @@
 <script>
 // import { mapActions } from 'vuex' // Action을 등록하는 helper (기존의 dispatch 대응)
 import Loader from '~/components/Loader'
+
+
 export default {
   components: {
     Loader
