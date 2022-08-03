@@ -57,7 +57,7 @@ https://celadon-pavlova-562e1f.netlify.app
 
 - 영화 분류, 개봉 연도, 표시 정보 수를 조절할 수 있습니다.
 
-  <img src="src/assets/search_movie.gif" width="800"/>
+  <img src="src/assets/search_more.gif" width="800"/>
 
 &nbsp;
 
