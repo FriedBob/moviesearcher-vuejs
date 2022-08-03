@@ -59,6 +59,8 @@ https://celadon-pavlova-562e1f.netlify.app
 
   <img src="src/assets/search_movie.gif" width="800"/>
 
+&nbsp;
+
 # <div style="text-align:center">⚽ Installation</div>
 
 Note: `package.json` 에 관련 dependency가 등록되어 있습니다.
